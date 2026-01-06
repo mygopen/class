@@ -62,6 +62,13 @@
             margin-bottom: 0.5em;
             font-size: 1.125rem;
         }
+        .prose h5 {
+            color: #374151;
+            font-weight: 600;
+            margin-top: 1.25em;
+            margin-bottom: 0.5em;
+            font-size: 1rem;
+        }
         .prose p {
             margin-bottom: 1em;
             line-height: 1.75;
@@ -150,7 +157,7 @@
                 </button>
             </div>
             <div class="text-sm text-gray-500">
-                顯示 <span id="course-count" class="font-bold text-gray-900">6</span> 個課程項目
+                顯示 <span id="course-count" class="font-bold text-gray-900">10</span> 個課程項目
             </div>
         </div>
 
@@ -510,6 +517,128 @@
                         <li><strong>提問 Gemini：</strong>上傳圖片問「這是 AI 假圖嗎？」或輸入「@SynthID+圖片」。</li>
                         <li><strong>SynthID Detector：</strong>專業檢測工具（目前僅限少數研究單位候補使用）。</li>
                     </ul>
+                `
+            },
+            {
+                id: 7,
+                category: "基礎觀念",
+                level: "初級",
+                title: "主題四：公部門與組織闢謠 SOP",
+                description: "收到不明訊息時的應對心法，以及公部門如何建立標準化的查核與澄清流程。",
+                duration: "15 分鐘",
+                icon: "clipboard-list",
+                color: "text-orange-600",
+                bg: "bg-orange-50",
+                content: `
+                    <h4>個人應對心法：冷、確、查</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>冷 (冷靜)：</strong>看到令人情緒激動或恐慌的訊息，先冷靜下來，不要急著轉傳。</li>
+                        <li><strong>確 (確認)：</strong>思考內容是否合理？來源是否可信？</li>
+                        <li><strong>查 (查證)：</strong>動手查查看，使用查核工具或詢問 MyGoPen。</li>
+                    </ul>
+
+                    <h4>公部門/組織闢謠流程</h4>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>蒐集證據與研判：</strong>截圖保存（含網址、時間），判斷是否涉及機關政策，或僅是部分錯誤。</li>
+                        <li><strong>跨單位協調：</strong>由新聞科或發言人統籌，確認業務單位與法制單位的說法一致。</li>
+                        <li><strong>對外澄清：</strong>
+                            <ul class="list-disc pl-5 mt-1">
+                                <li>在官網設置「澄清/闢謠專區」。</li>
+                                <li>發布於官方社群 (FB, LINE)。</li>
+                                <li>內容應以「描述實際狀況」為主，附上原始公文或佐證，並提醒民眾勿轉傳以免觸法。</li>
+                            </ul>
+                        </li>
+                    </ol>
+                `
+            },
+            {
+                id: 8,
+                category: "工具應用",
+                level: "進階",
+                title: "跨國搜尋神器：百度與 Yandex",
+                description: "Google 搜不到？針對中國或東歐地區的影像，轉換搜尋引擎至 Baidu 與 Yandex 的技巧。",
+                duration: "12 分鐘",
+                icon: "globe",
+                color: "text-teal-600",
+                bg: "bg-teal-50",
+                content: `
+                    <div class="bg-yellow-50 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                        <strong>注意：</strong> 這些搜尋引擎的結果可能包含誤導訊息或內容農場，務必多方查證。
+                    </div>
+
+                    <h4>Yandex (俄羅斯搜尋引擎)</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>適用範圍：</strong>俄羅斯、烏克蘭、東歐、土耳其等地區的影像。</li>
+                        <li><strong>特色：</strong>人臉與場景辨識能力極強，常能找到 Google 找不到的原始圖片。</li>
+                        <li><strong>操作：</strong>使用 Yandex Images 的以圖搜圖功能。</li>
+                    </ul>
+
+                    <h4>Baidu 百度 (中國搜尋引擎)</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>適用範圍：</strong>中國境內的新聞、事件、地理資訊。</li>
+                        <li><strong>百度地圖：</strong>Google Maps 在中國資訊較少，百度地圖能提供更詳細的街道與商家資訊 (如街景)。</li>
+                        <li><strong>百度圖片：</strong>搜尋中國網域的圖片。若失效，可嘗試微博、抖音、Bilibili 等平台搜尋。</li>
+                    </ul>
+                `
+            },
+            {
+                id: 9,
+                category: "工具應用",
+                level: "進階",
+                title: "網頁時光機：找回消失的證據",
+                description: "網頁內容被刪除怎麼辦？學習使用 Wayback Machine 與 Ghost Archive 找回消失的網頁。",
+                duration: "10 分鐘",
+                icon: "history",
+                color: "text-gray-600",
+                bg: "bg-gray-100",
+                content: `
+                    <h4>為什麼需要網頁存檔？</h4>
+                    <p>網路上的內容隨時可能被修改或刪除。查核人員需要工具來檢視「過去的內容」以驗證現在的說法。</p>
+
+                    <h4>常用工具</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Wayback Machine (網站時光機)：</strong>全球最大的網頁存檔資料庫。輸入網址即可查看該頁面在不同時間點的樣貌。
+                            <br><span class="text-sm text-gray-500">應用例：查詢美國國務院網站是否真的刪除了台灣相關內容？(比對前後年份的頁面)</span>
+                        </li>
+                        <li><strong>Ghost Archive (幽靈檔案館)：</strong>另一個網頁備份選擇，操作簡單。</li>
+                    </ul>
+
+                    <h4>查核應用技巧</h4>
+                    <p>當網傳「某某單位刪除了某則公告」時，第一步就是去 Wayback Machine 搜尋該網址，調閱過去的備份紀錄來證實或破解謠言。</p>
+                `
+            },
+            {
+                id: 10,
+                category: "視覺分析",
+                level: "專家",
+                title: "實戰演練：地理定位與時間分析",
+                description: "從一張照片推斷拍攝地點與時間。透過地標、陰影與衛星地圖的交叉比對技巧。",
+                duration: "20 分鐘",
+                icon: "map-pin",
+                color: "text-pink-600",
+                bg: "bg-pink-50",
+                content: `
+                    <h4>Geolocating (地理定位) 技巧</h4>
+                    <p>透過影像中的蛛絲馬跡，在地圖上找到確切位置。</p>
+                    
+                    <h5 class="font-bold mt-2">關鍵線索：</h5>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>文字與語言：</strong>招牌 (如「盛祥超市」)、路標 (如「東67號碼頭」)、車牌格式。</li>
+                        <li><strong>自然景觀：</strong>山脈起伏、植被種類、河流走向。</li>
+                        <li><strong>人造建築：</strong>獨特的大樓 (如首爾 209 號樓)、高爾夫球場、特殊屋頂 (光電板)。</li>
+                    </ul>
+
+                    <h4>Chronolocation (時間定位) 技巧</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>陰影分析：</strong>根據物體影子的方向與長度，推測拍攝時間 (上午/下午)。</li>
+                        <li><strong>天氣與季節：</strong>樹木是否落葉？人們穿著長袖或短袖？</li>
+                        <li><strong>歷史衛星圖：</strong>使用 Google Earth Pro 的歷史圖像功能，查看某個建築物是何時蓋好的，以限縮時間範圍。</li>
+                    </ul>
+
+                    <div class="bg-blue-50 p-4 rounded-lg mt-4 border-l-4 border-blue-500">
+                        <strong>案例：南北韓開戰謠言</strong><br>
+                        網傳直升機影片，透過比對影片中的「209」大樓與高爾夫球場網子，在首爾空軍基地附近找到相符地點，並確認為國軍日預演，而非開戰前兆。
+                    </div>
                 `
             }
         ];
