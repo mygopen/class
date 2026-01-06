@@ -158,7 +158,7 @@
                 </button>
             </div>
             <div class="text-sm text-gray-500">
-                顯示 <span id="course-count" class="font-bold text-gray-900">10</span> 個課程項目
+                顯示 <span id="course-count" class="font-bold text-gray-900">14</span> 個課程項目
             </div>
         </div>
 
@@ -639,6 +639,117 @@
                     <div class="bg-blue-50 p-4 rounded-lg mt-4 border-l-4 border-blue-500">
                         <strong>案例：南北韓開戰謠言</strong><br>
                         網傳直升機影片，透過比對影片中的「209」大樓與高爾夫球場網子，在首爾空軍基地附近找到相符地點，並確認為國軍日預演，而非開戰前兆。
+                    </div>
+                `
+            },
+            {
+                id: 11,
+                category: "基礎觀念",
+                level: "初級",
+                title: "主題五：資訊判讀與惡假害",
+                description: "釐清 Misinformation (錯誤資訊)、Disinformation (虛假資訊) 與 Malinformation (惡意資訊) 的差異，以及「事實不代表真實」的查核觀念。",
+                duration: "10 分鐘",
+                icon: "book-open",
+                color: "text-indigo-600",
+                bg: "bg-indigo-50",
+                content: `
+                    <h4>資訊光譜：惡、假、害</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>錯誤資訊 (Misinformation)：</strong>無意中傳播的錯誤訊息（例如長輩轉傳錯誤健康資訊），無惡意。</li>
+                        <li><strong>虛假資訊 (Disinformation)：</strong>為了誤導或操縱而「故意」散播的假訊息（例如政治組織編造謠言）。</li>
+                        <li><strong>惡意資訊 (Malinformation)：</strong>利用「真實」資訊來造成傷害（例如洩露私密照、肉搜個資）。</li>
+                    </ul>
+
+                    <h4>事實不代表真實</h4>
+                    <p>很多假訊息其實包含「部分事實」，但透過以下手法扭曲真相：</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>以偏概全：</strong>放大微小的事實，忽略整體脈絡。</li>
+                        <li><strong>去脈絡化：</strong>將真實影像放在錯誤的時間或地點（移花接木）。</li>
+                        <li><strong>無中生有：</strong>完全捏造不存在的事件。</li>
+                    </ul>
+                `
+            },
+            {
+                id: 12,
+                category: "工具應用",
+                level: "中級",
+                title: "社群趨勢與闢謠資料庫",
+                description: "掌握 Cofacts、Infodemic 等工具觀測社群熱點，並使用 ScamAdviser 快速檢測可疑詐騙網址。",
+                duration: "15 分鐘",
+                icon: "shield-check",
+                color: "text-rose-600",
+                bg: "bg-rose-50",
+                content: `
+                    <h4>社群平台都在傳什麼？</h4>
+                    <p>善用工具監測不同平台的熱門話題，提早發現潛在謠言。</p>
+                    
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Cofacts 真的假的：</strong>查詢 LINE 上流傳的熱門轉傳訊息與查核結果。</li>
+                        <li><strong>Who posted what?：</strong>搜尋 Facebook 特定日期的貼文與關鍵字，找出特定議題的發起點。</li>
+                        <li><strong>Infodemic：</strong>觀測 Dcard、PTT 等論壇的熱門話題，分析是否有「協同操作」的跡象。</li>
+                    </ul>
+
+                    <h4>這是詐騙網址嗎？</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>ScamAdviser：</strong>輸入網址，檢測網站的信賴評分、主機位置與註冊時間。</li>
+                        <li><strong>快門手 (防詐機器人)：</strong>透過 LINE 傳送網址或 ID，快速查詢是否為詐騙黑名單。</li>
+                    </ul>
+                `
+            },
+            {
+                id: 13,
+                category: "工具應用",
+                level: "專家",
+                title: "數位足跡與詐騙偵測",
+                description: "學習使用 Google 運算子挖掘深層資料，以及透過帳號 ID 與人臉搜尋跨平台的數位足跡。",
+                duration: "20 分鐘",
+                icon: "search",
+                color: "text-cyan-600",
+                bg: "bg-cyan-50",
+                content: `
+                    <h4>Google 進階搜尋 (Google Dorks)</h4>
+                    <p>使用特殊指令精準找到政府公開資料或特定網站內容。</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><code>site:gov.tw</code>：限定搜尋政府網站。</li>
+                        <li><code>filetype:pdf</code>：限定搜尋 PDF 文件（適合找公文、報告）。</li>
+                        <li>範例：<code>非洲豬瘟 site:moa.gov.tw filetype:pdf</code> (在農業部網站找非洲豬瘟的 PDF)。</li>
+                    </ul>
+
+                    <h4>肉搜神器：跨平台足跡</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Profile Discover：</strong>輸入帳號 (ID)，一鍵搜尋該 ID 在全球 400+ 社群平台的註冊狀況。</li>
+                        <li><strong>FaceCheck.ID：</strong>上傳一張照片，搜尋網路上是否有其他公開的相似人臉照片（可用於識別盜圖詐騙）。</li>
+                    </ul>
+                `
+            },
+            {
+                id: 14,
+                category: "視覺分析",
+                level: "進階",
+                title: "影像分析：群眾人數估算",
+                description: "針對遊行集會進行科學化的人數估算 (MapChecking)，並使用時光機還原被刪改的網頁內容。",
+                duration: "15 分鐘",
+                icon: "users",
+                color: "text-amber-600",
+                bg: "bg-amber-50",
+                content: `
+                    <h4>科學化估算群眾人數</h4>
+                    <p>網傳「萬人響應」是真的嗎？使用 <strong>MapChecking</strong> 工具進行驗證。</p>
+                    
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>框選範圍：</strong>在地圖上圈出集會的實際範圍（扣除舞台、樹木等障礙物）。</li>
+                        <li><strong>設定密度：</strong>
+                            <ul class="list-disc pl-5 mt-1">
+                                <li>鬆散 (Light)：約 1 人 / 平方公尺。</li>
+                                <li>擁擠 (Crowded)：約 3 人 / 平方公尺。</li>
+                                <li>極度擁擠 (Packed)：約 5 人 / 平方公尺。</li>
+                            </ul>
+                        </li>
+                        <li><strong>計算：</strong>系統會自動算出該範圍在特定密度下的預估人數。</li>
+                    </ol>
+
+                    <div class="bg-gray-100 p-4 rounded-lg mt-4">
+                        <strong>小技巧：</strong>比對現場空拍圖與 MapChecking 的密度示意圖，可以更準確地判斷現場密度。
                     </div>
                 `
             }
