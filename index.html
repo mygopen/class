@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGoPen AI 影像查證學習中心</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+        }
+        .google-blue { color: #1a73e8; }
+        .google-btn {
+            background-color: #1a73e8;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        .google-btn:hover { background-color: #1557b0; }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar for Modal */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #dadce0;
+            border-radius: 4px;
+        }
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #bdc1c6;
+        }
+
+        .chip {
+            transition: all 0.2s;
+        }
+        .chip.active {
+            background-color: #e8f0fe;
+            color: #1967d2;
+            border-color: #e8f0fe;
+        }
+        
+        /* Typography for Modal Content */
+        .prose h4 {
+            color: #202124;
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-size: 1.125rem;
+        }
+        .prose p {
+            margin-bottom: 1em;
+            line-height: 1.75;
+            color: #4b5563;
+        }
+        .prose ul, .prose ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+        }
+        .prose li {
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.reload()">
+                        <img src="https://ik.imagekit.io/mygopen/menu-logo.png?updatedAt=1767058877480" alt="MyGoPen Logo" class="h-8">
+                        <span class="font-bold text-xl tracking-tight text-gray-700 hidden sm:inline">麥擱騙｜AI 查證學習平台</span>
+                    </div>
+                    <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                        <a href="#" class="border-b-2 border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                            課程目錄
+                        </a>
+                        <button onclick="openAboutModal()" class="border-transparent text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium focus:outline-none">
+                            關於我們
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="p-2 rounded-full text-gray-500 hover:bg-gray-100">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button class="ml-4 p-2 rounded-full text-gray-500 hover:bg-gray-100">
+                        <i data-lucide="grid" class="w-5 h-5"></i>
+                    </button>
+                    <div class="ml-4 flex items-center">
+                         <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm">
+                            U
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-20 sm:px-6 lg:px-8 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between">
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                    AI 造假影像<br><span class="google-blue">查證指引課程</span>
+                </h1>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto lg:mx-0">
+                    在這個 AI 技術迅速迭代的時代，學習如何辨識真偽。本課程基於 MyGoPen 最新指引，提供您實用的查證技巧與工具。
+                </p>
+                <div class="mt-8 flex justify-center lg:justify-start gap-4">
+                    <a href="#catalog" class="google-btn px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm md:text-lg md:px-10">
+                        開始學習
+                    </a>
+                    <a href="#" class="bg-white text-blue-600 px-8 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm hover:bg-gray-50 md:text-lg md:px-10">
+                        下載 PDF
+                    </a>
+                </div>
+            </div>
+            <div class="mt-10 lg:mt-0 lg:w-5/12 flex justify-center">
+                <!-- Abstract Hero Graphic -->
+                <div class="relative w-full max-w-sm">
+                    <div class="absolute top-0 -left-4 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                    <div class="relative">
+                        <!-- Updated Hero Image -->
+                        <img src="https://ik.imagekit.io/mygopen/lion-lens.png" alt="Verification Illustration" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="catalog" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        
+        <!-- Filters -->
+        <div class="flex flex-col sm:flex-row items-center justify-between mb-8 space-y-4 sm:space-y-0">
+            <div class="flex flex-wrap gap-2" id="filters">
+                <button class="chip active px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:bg-gray-50 bg-white" data-filter="all">
+                    全部課程
+                </button>
+                <button class="chip px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:bg-gray-50 bg-white" data-filter="基礎觀念">
+                    基礎觀念
+                </button>
+                <button class="chip px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:bg-gray-50 bg-white" data-filter="視覺分析">
+                    視覺分析
+                </button>
+                <button class="chip px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:bg-gray-50 bg-white" data-filter="工具應用">
+                    工具應用
+                </button>
+            </div>
+            <div class="text-sm text-gray-500">
+                顯示 <span id="course-count" class="font-bold text-gray-900">6</span> 個課程項目
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="course-grid">
+            <!-- Content will be injected via JS -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="flex justify-center space-x-6 md:order-2">
+                <!-- Email -->
+                <a href="mailto:public@mygopen.com" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Email</span>
+                    <i data-lucide="mail" class="h-6 w-6"></i>
+                </a>
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/mygopen" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Facebook</span>
+                    <i data-lucide="facebook" class="h-6 w-6"></i>
+                </a>
+
+                <!-- LINE -->
+                <a href="https://line.me/R/ti/p/@mygopen" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">LINE</span>
+                    <!-- Custom SVG for LINE (Lucide doesn't have standard LINE icon) -->
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 5.56 2 10.12c0 2.42 1.25 4.58 3.28 6.08-.15.54-.56 1.95-.65 2.27-.11.41.37.59.62.33 0 0 2.22-1.87 2.68-2.32.74.21 1.54.33 2.37.33 5.52 0 10-3.56 10-8.12S17.52 2 12 2zm4.18 11.23h-1.37c-.24 0-.43-.19-.43-.43V8.86c0-.24.19-.43.43-.43s.43.19.43.43v3.51h.94c.24 0 .43.19.43.43s-.2.43-.43.43zm-2.47-.01c-.24 0-.43-.19-.43-.43V8.86c0-.24.19-.43.43-.43s.43.19.43.43v3.93c0 .24-.19.43-.43.43zm-2.65-2.7l-.94-1.35v1.35c0 .24-.19.43-.43.43s-.43-.19-.43-.43V8.86c0-.24.19-.43.43-.43.14 0 .27.06.35.17l.95 1.35V8.86c0-.24.19-.43.43-.43s.43.19.43.43v3.93c0 .24-.19.43-.43.43-.13 0-.26-.06-.34-.17zm-3.33 2.71h-1.37c-.24 0-.43-.19-.43-.43V8.86c0-.24.19-.43.43-.43s.43.19.43.43v3.51h.94c.24 0 .43.19.43.43s-.2.43-.43.43z"/>
+                    </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/mygopen/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Instagram</span>
+                    <i data-lucide="instagram" class="h-6 w-6"></i>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@mygopen" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">YouTube</span>
+                    <i data-lucide="youtube" class="h-6 w-6"></i>
+                </a>
+            </div>
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2025 MyGoPen. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Course Modal -->
+    <div id="course-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal()"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <!-- Modal Header -->
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-gray-100">
+                    <div class="sm:flex sm:items-start justify-between">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <div class="flex justify-between items-center mb-2">
+                                <span id="modal-tag" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    標籤
+                                </span>
+                                <button onclick="closeModal()" class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
+                                    <span class="sr-only">Close</span>
+                                    <i data-lucide="x" class="h-6 w-6"></i>
+                                </button>
+                            </div>
+                            <h3 class="text-2xl leading-6 font-bold text-gray-900" id="modal-title">
+                                課程標題
+                            </h3>
+                            <p class="text-sm text-gray-500 mt-2" id="modal-desc">
+                                課程簡述
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal Body (Content) -->
+                <div class="px-4 py-5 sm:p-6 modal-content max-h-[60vh] overflow-y-auto prose prose-blue max-w-none text-gray-700" id="modal-body">
+                    <!-- Content injected here -->
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="closeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+                        完成學習
+                    </button>
+                    <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        關閉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div id="about-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="about-modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeAboutModal()"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <!-- Modal Header -->
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-gray-100 relative">
+                    <button onclick="closeAboutModal()" class="absolute top-4 right-4 bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">Close</span>
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-2xl leading-6 font-bold text-gray-900" id="about-modal-title">
+                                關於 MyGoPen
+                            </h3>
+                            <p class="text-sm text-gray-500 mt-2">
+                                讓真相不被沈沒，找回資訊的主控權
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal Body (About Content) -->
+                <div class="px-4 py-5 sm:p-6 modal-content max-h-[60vh] overflow-y-auto prose prose-blue max-w-none text-gray-700">
+                    <div class="flex items-start gap-4 mb-6">
+                        <img src="https://ik.imagekit.io/mygopen/menu-logo.png?updatedAt=1767058877480" alt="MyGoPen Logo" class="h-16 w-auto flex-shrink-0">
+                        <div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                MyGoPen 成立於 2015 年，是台灣本土最早的幾個事實查核單位之一。名稱來自台語的「麥擱騙」，最初的目的是幫助年長家人和親友辨識不明資訊並揭露詐騙行為。
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>我們的初衷</h4>
+                    <p>
+                        當時我們想著：「除了幫自己家的長輩之外，是不是也可以幫幫別人呢？」<br>
+                        起初，創辦人 Charles 和志願夥伴並未將 MyGoPen 定義為一個新聞機構，只是希望「保護善良的人，並教導這些人如何保護自己」。我們相信，當人們願意多查一層、多問一句，就是在為公共對話奠定基礎，讓民主不被誤導與幻覺操弄。
+                    </p>
+
+                    <h4>我們在做什麼</h4>
+                    <ul class="list-disc pl-5">
+                        <li><strong>事實查核：</strong>針對網路流傳的文字、圖片、影片進行專業查證。</li>
+                        <li><strong>真人客服：</strong>建立一對一真人對談客服的 LINE 官方帳號，協助民眾查證。</li>
+                        <li><strong>媒體素養：</strong>透過教育與課程，提升民眾的資訊判讀能力。</li>
+                    </ul>
+
+                    <h4>國際認證與合作</h4>
+                    <p>
+                        在 2020 年 3 月，MyGoPen 正式通過<strong>國際事實查核聯盟（IFCN）</strong>審核，成為全球 80 位簽署成員之一，也是台灣第 2 家獲得該認證的單位。這代表我們的查核作業符合國際嚴謹的守則與標準。
+                    </p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mt-6 border-l-4 border-blue-500">
+                        <strong>我們的願景</strong><br>
+                        希望未來能有更乾淨的網路環境，培養大家都有個可以警戒查證訊息的態度，而不是人云亦云的分享資訊，並找回資訊的主控權。
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="closeAboutModal()" class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        關閉
+                    </button>
+                    <a href="https://www.mygopen.com/" target="_blank" class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm">
+                        前往官網
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data and Logic -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Course Data (Extracted from PDF)
+        const courses = [
+            {
+                id: 1,
+                category: "基礎觀念",
+                level: "初級",
+                title: "主題一：緊急事件影像查證基礎",
+                description: "當天災、戰爭發生時，如何透過基礎原則快速辨認影像真偽。",
+                duration: "10 分鐘",
+                icon: "shield-alert",
+                color: "text-red-600",
+                bg: "bg-red-50",
+                content: `
+                    <h4>核心概念</h4>
+                    <p>AI 時代是一場「貓追老鼠」的遊戲，查證速度往往趕不上造假速度。但在緊急事件（如天災、戰爭）發生時，掌握基礎查證原則是最簡單卻有效的方法。</p>
+                    
+                    <h4>緊急事件查證 SOP</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>來源鑑定：</strong>透過以圖反搜（如 Google 圖片）尋找最早來源。分析發布者是否可信。</li>
+                        <li><strong>查看其他線索：</strong>交叉比對社群文字與影像。尋找影像的其他版本（可能留有浮水印）。</li>
+                        <li><strong>確認人事時地物：</strong>影像內容是否合理？季節、天氣、衣著是否與宣稱時間地點相符？</li>
+                        <li><strong>求證：</strong>向當事人或相關單位直接求證。</li>
+                        <li><strong>檢視畫面：</strong>人眼檢視是否有不合理的失真或怪異之處。</li>
+                    </ul>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg mt-4 border-l-4 border-yellow-400">
+                        <strong>重要提示：</strong> Google AI 生成的影像，使用 Google 以圖反搜時，選擇圖片檢視通常可以辨認出來。
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                category: "視覺分析",
+                level: "中級",
+                title: "主題二 (上)：聽覺與基本畫面分析",
+                description: "學習分辨 AI 生成影片的聲音破綻、嘴型同步以及常見的浮水印。",
+                duration: "15 分鐘",
+                icon: "eye",
+                color: "text-blue-600",
+                bg: "bg-blue-50",
+                content: `
+                    <h4>分析點一：聽聲音、看嘴型</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>聲音與嘴型是否同步？</li>
+                        <li>講話語氣、節奏停頓、呼吸聲是否自然？</li>
+                        <li>音質是否過於平順或有機械感？</li>
+                    </ul>
+
+                    <h4>分析點二：分析畫面元素</h4>
+                    <p>檢查是否出現 AI 工具的浮水印。造假者常會用馬賽克遮擋，但透過反搜可能找到原始帶有浮水印的版本。</p>
+                    
+                    <h5 class="font-bold mt-4">常見 AI 浮水印對照：</h5>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 mt-2">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">AI 工具</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">浮水印位置</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">特徵</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr><td>Gemini / Veo</td><td>右下</td><td>Google AI 生成</td></tr>
+                                <tr><td>Sora</td><td>右下固定/左側隨機</td><td>OpenAI 開發</td></tr>
+                                <tr><td>Luma</td><td>右下</td><td>LUMA 字樣</td></tr>
+                                <tr><td>剪映 / 即夢</td><td>角落</td><td>CapCut / HIT AI</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h5 class="font-bold mt-4">文字與破圖：</h5>
+                    <p>雖然 AI 生成繁體中文的失真狀況已大幅改善（如 Gemini 3），但仍需留意招牌、標語文字是否扭曲或拼貼錯誤。</p>
+                `
+            },
+            {
+                id: 3,
+                category: "視覺分析",
+                level: "中級",
+                title: "主題二 (下)：人物、透視與光影",
+                description: "深入分析人物細節（手指、皮膚）、物理透視線及光影邏輯。",
+                duration: "20 分鐘",
+                icon: "user-x",
+                color: "text-purple-600",
+                bg: "bg-purple-50",
+                content: `
+                    <h4>分析點三：人物與人群</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>身體與五官：</strong>人臉與身體接合處是否有斷裂感？手指數量與形狀是否正常？</li>
+                        <li><strong>皮膚細節：</strong>皮膚是否過度平滑、零毛孔（像塑膠）？頭髮是否有獨立髮絲？</li>
+                        <li><strong>人群特徵：</strong>背景人群是否長得太像（複製人）？眾人目光方向是否一致詭異？</li>
+                    </ul>
+
+                    <h4>分析點四：消失點與透視線</h4>
+                    <p>空間幾何仍是 AI 的弱點。真實照片中，建築物的透視線應匯聚在同一個「消失點」。如果透視線亂跑，極可能是 AI 生成。</p>
+
+                    <h4>分析點六：光影與反射</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>光源一致性：</strong>檢查陰影方向是否衝突？例如瀑布流動但山頭光影沒變。</li>
+                        <li><strong>反射邏輯：</strong>鏡子、水面或眼球中的反射影像，是否符合物理原則？</li>
+                    </ul>
+                `
+            },
+            {
+                id: 4,
+                category: "工具應用",
+                level: "進階",
+                title: "主題三：AI 影像攻擊趨勢",
+                description: "了解 Cheap fake 與 Deepfake 的差異，以及「紅藍攻防」概念。",
+                duration: "12 分鐘",
+                icon: "zap",
+                color: "text-yellow-600",
+                bg: "bg-yellow-50",
+                content: `
+                    <h4>兩大造假類型</h4>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>Cheap fake：</strong>技術門檻低，如傳統 P 圖、剪輯、加速減速。</li>
+                        <li><strong>AI 合成影音 (Deepfake)：</strong>
+                            <ul class="list-disc pl-5 mt-1">
+                                <li>語音變造（TTS、Voice Cloning）。</li>
+                                <li>影像變造（換臉 Face swap、唇形同步）。</li>
+                                <li>生成式 AI（文生圖、圖生影、數字人）。</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>偵測心法</h4>
+                    <p>採取資安「紅藍攻防」概念：先思考影像可能是怎麼做出來的（攻擊），再選擇對應的偵測工具（防禦）。</p>
+                `
+            },
+            {
+                id: 5,
+                category: "工具應用",
+                level: "專家",
+                title: "實用偵測工具包",
+                description: "掌握 FotoForensics, Deepware, Hive 等專業鑑識工具的使用時機。",
+                duration: "25 分鐘",
+                icon: "tool",
+                color: "text-green-600",
+                bg: "bg-green-50",
+                content: `
+                    <div class="bg-red-50 p-4 rounded mb-4 border-l-4 border-red-400">
+                        <strong>誤區提醒：</strong>不要期待單一工具能給出 100% 答案。工具可能誤判，需結合常識與多方驗證。
+                    </div>
+
+                    <h4>推薦工具清單</h4>
+                    
+                    <h5 class="font-bold text-gray-800 mt-2">1. 傳統影像鑑定 (檢視後製痕跡)</h5>
+                    <ul class="list-disc pl-5 mb-2">
+                        <li><strong>Metadata2go / Online EXIF Viewer：</strong>檢視拍攝時間、裝置資訊（注意：易被竄改）。</li>
+                        <li><strong>FotoForensics：</strong>使用 ELA (錯誤層級分析) 檢視修圖痕跡。若某區塊顏色雜訊與周圍明顯不同，可能是後製。</li>
+                    </ul>
+
+                    <h5 class="font-bold text-gray-800 mt-2">2. Deepfake 影音偵測</h5>
+                    <ul class="list-disc pl-5 mb-2">
+                        <li><strong>Deepware：</strong>開源工具，檢測換臉影片。</li>
+                        <li><strong>ElevenLabs：</strong>專門檢測聲音偽造（商業軟體）。</li>
+                    </ul>
+
+                    <h5 class="font-bold text-gray-800 mt-2">3. 生成式 AI 與綜合工具</h5>
+                    <ul class="list-disc pl-5 mb-2">
+                        <li><strong>Hive Moderation：</strong>綜合性強，可檢測聲音、影片、圖片，信效度高。</li>
+                        <li><strong>Scamio：</strong>適合個人使用的防詐工具，可判定圖片是否為 AI 合成。</li>
+                    </ul>
+                `
+            },
+            {
+                id: 6,
+                category: "工具應用",
+                level: "進階",
+                title: "數位浮水印技術",
+                description: "認識 C2PA 與 Google SynthID 等看不見的溯源技術。",
+                duration: "10 分鐘",
+                icon: "fingerprint",
+                color: "text-indigo-600",
+                bg: "bg-indigo-50",
+                content: `
+                    <h4>看不見的防偽標籤</h4>
+                    <p>除了肉眼可見的 Logo，科技巨頭正在發展隱藏式水印。</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="border p-3 rounded">
+                            <strong class="text-blue-600">C2PA 溯源技術</strong>
+                            <p class="text-sm mt-1">Adobe、微軟推動。在圖像後植入履歷標籤。缺點是轉存、壓縮時容易遺失。</p>
+                        </div>
+                        <div class="border p-3 rounded">
+                            <strong class="text-red-600">Google SynthID</strong>
+                            <p class="text-sm mt-1">直接嵌入影音內容中，人眼無法察覺但抗破壞性高。目前僅限 Google 生態系工具生成內容。</p>
+                        </div>
+                    </div>
+
+                    <h4>如何檢測 SynthID？</h4>
+                    <ul class="list-disc pl-5 space-y-2 mt-2">
+                        <li><strong>提問 Gemini：</strong>上傳圖片問「這是 AI 假圖嗎？」或輸入「@SynthID+圖片」。</li>
+                        <li><strong>SynthID Detector：</strong>專業檢測工具（目前僅限少數研究單位候補使用）。</li>
+                    </ul>
+                `
+            }
+        ];
+
+        // Elements
+        const gridElement = document.getElementById('course-grid');
+        const filterButtons = document.querySelectorAll('#filters button');
+        const countElement = document.getElementById('course-count');
+        const modal = document.getElementById('course-modal');
+        const aboutModal = document.getElementById('about-modal');
+
+        // Render Functions
+        function renderCourses(filter = 'all') {
+            gridElement.innerHTML = '';
+            let filteredCourses = courses;
+            
+            if (filter !== 'all') {
+                filteredCourses = courses.filter(c => c.category === filter);
+            }
+
+            countElement.textContent = filteredCourses.length;
+
+            filteredCourses.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'flex flex-col bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover cursor-pointer h-full';
+                card.onclick = () => openModal(course.id);
+                
+                card.innerHTML = `
+                    <div class="h-48 ${course.bg} flex items-center justify-center relative">
+                        <i data-lucide="${course.icon}" class="w-20 h-20 ${course.color} opacity-80"></i>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                            ${course.level}
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(course.category)}">
+                                ${course.category}
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2">${course.title}</h3>
+                        <p class="text-gray-500 text-sm mb-4 flex-1 line-clamp-3">${course.description}</p>
+                        <div class="flex items-center text-sm text-gray-400 mt-auto pt-4 border-t border-gray-100">
+                            <i data-lucide="clock" class="w-4 h-4 mr-1"></i>
+                            ${course.duration}
+                            <span class="mx-2">•</span>
+                            <span class="text-blue-600 font-medium group-hover:underline">查看詳情</span>
+                        </div>
+                    </div>
+                `;
+                gridElement.appendChild(card);
+            });
+            
+            lucide.createIcons();
+        }
+
+        function getCategoryColor(category) {
+            switch(category) {
+                case '基礎觀念': return 'bg-green-100 text-green-800';
+                case '視覺分析': return 'bg-blue-100 text-blue-800';
+                case '工具應用': return 'bg-purple-100 text-purple-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            const course = courses.find(c => c.id === id);
+            if (!course) return;
+
+            document.getElementById('modal-title').textContent = course.title;
+            document.getElementById('modal-desc').textContent = course.description;
+            document.getElementById('modal-tag').textContent = course.category;
+            document.getElementById('modal-body').innerHTML = course.content;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // About Modal Logic
+        function openAboutModal() {
+            aboutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAboutModal() {
+            aboutModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter
+                renderCourses(btn.dataset.filter);
+            });
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+                closeAboutModal();
+            }
+        });
+
+        // Initial Render
+        renderCourses();
+
+    </script>
+</body>
+</html>
