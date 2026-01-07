@@ -107,7 +107,10 @@
                         <span class="font-bold text-xl tracking-tight text-gray-700 hidden sm:inline">麥擱騙｜AI 查證學習平台</span>
                     </div>
                     <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
-                        <a href="#catalog" class="border-b-2 border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                        <button onclick="openInfoModal()" class="border-transparent text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium focus:outline-none">
+                            課程資訊
+                        </button>
+                        <a href="#catalog" class="border-transparent text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             課程目錄
                         </a>
                         <button onclick="openAboutModal()" class="border-transparent text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium focus:outline-none">
@@ -266,6 +269,69 @@
                         完成學習
                     </button>
                     <button type="button" onclick="closeModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        關閉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="info-modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeInfoModal()"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-gray-100 relative">
+                    <button onclick="closeInfoModal()" class="absolute top-4 right-4 bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">Close</span>
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-2xl leading-6 font-bold text-gray-900" id="info-modal-title">
+                                課程資訊
+                            </h3>
+                            <p class="text-sm text-gray-500 mt-2">
+                                課程時間、地點與注意事項
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-4 py-5 sm:p-6 modal-content max-h-[60vh] overflow-y-auto prose prose-blue max-w-none text-gray-700">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">【課程資訊】</h4>
+                    <ul class="list-none space-y-2 mb-6">
+                        <li><strong>課程地點：</strong> 高雄市鹽埕區大勇路11號3F</li>
+                        <li><strong>課程日期：</strong> 2026/03/14（六）</li>
+                        <li><strong>課程時間：</strong> 13:00 - 17:00（共 4 小時）</li>
+                        <li><strong>課程費用：</strong> <span class="text-green-600 font-bold">免費課程</span></li>
+                    </ul>
+
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">【注意事項】</h4>
+
+                    <h5 class="font-bold text-gray-800 mt-4 mb-2">課程規範：</h5>
+                    <p class="mb-4 text-gray-600">
+                        學員若因個人因素未能如期參與，恕無法提供補課或改期。<br>
+                        提醒您於報名前務必確認個人行程，以免影響學習權益。
+                    </p>
+
+                    <h5 class="font-bold text-gray-800 mt-4 mb-2">行前通知：</h5>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 mb-4">
+                        <li>預計開課日前兩週會寄出行前通知，若無收到請聯繫客服詢問。</li>
+                        <li>若因報名人數不足，本課程將取消開辦。我們最晚會於開課日兩週前，透過 E-mail發出停課通知與後續處理。</li>
+                        <li>若遇強烈颱風、地震等天災，課程是否照常舉行，將依據「當地縣市政府」發布之「停止上班上課」公告為準。後續將以 Email 通知延期或取消事宜。</li>
+                    </ul>
+
+                    <h5 class="font-bold text-gray-800 mt-4 mb-2">聯繫方式：</h5>
+                    <p class="text-gray-600">
+                        如有課程相關疑問，請來信至 <a href="mailto:public@mygopen.com" class="text-blue-600 hover:underline">public@mygopen.com</a>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onclick="closeInfoModal()" class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                         關閉
                     </button>
                 </div>
@@ -726,6 +792,7 @@
         const countElement = document.getElementById('course-count');
         const modal = document.getElementById('course-modal');
         const aboutModal = document.getElementById('about-modal');
+        const infoModal = document.getElementById('info-modal');
 
         // Render Functions
         function renderCourses(filter = 'all') {
@@ -811,6 +878,17 @@
             document.body.style.overflow = 'auto';
         }
 
+        // Info Modal Logic
+        function openInfoModal() {
+            infoModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInfoModal() {
+            infoModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
         // Event Listeners
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -827,6 +905,7 @@
             if (event.key === "Escape") {
                 closeModal();
                 closeAboutModal();
+                closeInfoModal();
             }
         });
 
