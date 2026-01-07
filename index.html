@@ -55,6 +55,18 @@
             border-color: #e8f0fe;
         }
         
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(var(--tw-rotate)); }
+            50% { transform: translateY(-10px) rotate(var(--tw-rotate)); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animation-delay-1000 { animation-delay: 1s; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-3000 { animation-delay: 3s; }
+
         /* Typography for Modal Content */
         .prose h4 {
             color: #202124;
@@ -132,7 +144,21 @@
                     <div class="absolute top-0 -left-4 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                     <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
                     <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-                    <div class="relative">
+                    
+                    <div class="absolute top-8 -left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-lg text-sm font-bold text-gray-700 animate-float z-20 transform -rotate-6 border border-gray-100">
+                        這真的嗎？
+                    </div>
+                    <div class="absolute top-4 -right-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-lg text-sm font-bold text-gray-700 animate-float animation-delay-2000 z-20 transform rotate-3 border border-gray-100">
+                        這AI生成的吧？
+                    </div>
+                    <div class="absolute bottom-32 -left-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-lg text-sm font-bold text-blue-600 animate-float animation-delay-1000 z-20 transform rotate-6 border border-blue-50">
+                        我查看看！
+                    </div>
+                    <div class="absolute bottom-12 -right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-lg text-sm font-bold text-red-500 animate-float animation-delay-3000 z-20 transform -rotate-3 border border-red-50">
+                        這有AI痕跡！
+                    </div>
+
+                    <div class="relative z-10">
                         <img src="https://ik.imagekit.io/mygopen/lion-lens.png" alt="Verification Illustration" class="w-full h-auto">
                     </div>
                 </div>
